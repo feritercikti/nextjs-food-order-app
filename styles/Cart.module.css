@@ -1,0 +1,146 @@
+.container {
+  padding: 80px;
+  display: flex;
+}
+
+.left {
+  flex: 2;
+  margin-right: 40px;
+}
+
+.right {
+  flex: 1;
+}
+
+.imgContainer {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 20px;
+  padding-right: 10px;
+}
+
+.name {
+  font-weight: 500;
+  color: #942f16;
+  font-size: 18px;
+}
+
+.total {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.wrapper {
+  width: 90%;
+  max-height: 500px;
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  border: #000000 solid;
+}
+
+.totalTextTitle {
+  margin-right: 10px;
+}
+
+.button {
+  padding: 10px 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: none;
+  background-color: rgb(0, 118, 91);
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: rgb(3, 74, 58);
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trTitle {
+    display: none;
+  }
+
+  .tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .name,
+  .total {
+    font-size: 24px;
+  }
+
+  .extras,
+  .price,
+  .quantity {
+    font-size: 22px;
+  }
+
+  .price::before {
+    content: 'Price: ';
+    font-weight: 500;
+  }
+  .quantity::before {
+    content: 'Quantity: ';
+    font-weight: 500;
+  }
+  .total::before {
+    content: 'Total: ';
+    font-weight: 500;
+  }
+  .wrapper {
+    width: 100%;
+  }
+}
+
+.cancel {
+  border: none;
+  background-color: rgb(147, 5, 5);
+  color: white;
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
+}
+.cancel:hover {
+  background-color: rgb(85, 3, 3);
+}
+
+.payButton {
+  padding: 10px 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: rgb(0, 118, 91);
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}

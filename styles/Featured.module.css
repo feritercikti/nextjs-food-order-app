@@ -1,0 +1,13 @@
+.container {
+  height: 500px;
+  background-color: #990a0a;
+  overflow: hidden;
+  position: relative;
+  padding: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: 30vh;
+  }
+}
