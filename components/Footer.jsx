@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from '../styles/Footer.module.css';
-import Image from 'next/image';
 
 const Footer = () => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.card}>
-          <h2 className={styles.motto}>IT'S THE BEST PIZZA</h2>
+          <h2 className={styles.motto}>THE BEST PIZZA</h2>
         </div>
         <div className={styles.card}>
           <h1 className={styles.title}>ADDRESS</h1>

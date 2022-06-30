@@ -20,7 +20,7 @@ const Index = ({ orders, products }) => {
       console.log(error);
     }
   };
-  const handleDeleteOrder = async (id) => {
+  const orderDelete = async (id) => {
     try {
       const res = await axios.delete('http://localhost:3000/api/orders/' + id);
       setOrderList(orderList.filter((order) => order._id !== id));
@@ -45,6 +45,12 @@ const Index = ({ orders, products }) => {
         console.log(error);
       }
     }
+  };
+
+  const productSize = (index) => {
+    if (index === 0) return 'Small';
+    if (index === 1) return 'Medium';
+    if (index === 2) return 'Large';
   };
 
   return (
@@ -107,7 +113,12 @@ const Index = ({ orders, products }) => {
           <tbody>
             <tr className={styles.trTitle}>
               <th>OrderId</th>
-              <th>Customer </th>
+              <th>Product</th>
+              <th>Size</th>
+              <th>Extras</th>
+              <th>Customer</th>
+              <th>Address</th>
+              <th>Phone</th>
               <th>Total</th>
               <th>Payment</th>
               <th>Status</th>
@@ -117,8 +128,21 @@ const Index = ({ orders, products }) => {
           {orderList.map((order) => (
             <tbody key={order._id}>
               <tr className={styles.trTitle}>
-                <td>{order._id}</td>
+                <td>{order._id.slice(0, 10)}..</td>
+                <td>{order.products.map((product) => `${product.title} `)}</td>
+                <td>
+                  {order.products.map(
+                    (product) => `${productSize(product.size)} `
+                  )}
+                </td>
+                <td>
+                  {order.products.map((product) =>
+                    product.extras.map((extra) => `${extra.text} `)
+                  )}
+                </td>
                 <td>{order.customer}</td>
+                <td>{order.address}</td>
+                <td>{order.phone}</td>
                 <td>${order.total}</td>
                 <td>cash</td>
                 <td>{status[order.status]}</td>
@@ -131,7 +155,7 @@ const Index = ({ orders, products }) => {
                   </button>
                   <button
                     className={styles.button}
-                    onClick={() => handleDeleteOrder(order._id)}
+                    onClick={() => orderDelete(order._id)}
                   >
                     Delete
                   </button>
@@ -141,7 +165,7 @@ const Index = ({ orders, products }) => {
           ))}
         </table>
       </div>
-      {edit && <Edit setEdit={setEdit} products={products} />}
+      {edit && <Edit setEdit={setEdit} products={pizzaList} />}
     </div>
   );
 };

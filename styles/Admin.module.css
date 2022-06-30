@@ -1,5 +1,5 @@
 .container {
-  padding: 50px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
 }
@@ -19,13 +19,14 @@
   color: white;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .button:first-child {
   background-color: teal;
   margin-right: 10px;
 }
-
 .button:last-child {
-  background-color: crimson;
+  background-color: rgb(128, 0, 0);
+  margin-right: 10px;
 }

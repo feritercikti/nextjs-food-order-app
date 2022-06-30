@@ -1,27 +1,32 @@
 .container {
-  padding: 80px;
+  padding-right: 10px;
+  padding: 90px;
   display: flex;
+  justify-content: center;
 }
 
 .left {
   flex: 2;
-  margin-right: 40px;
+  margin-right: 45px;
 }
 
 .right {
   flex: 1;
+  margin-left: 45px;
 }
 
 .imgContainer {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   position: relative;
+  float: left;
 }
 
 .table {
   width: 100%;
   border-spacing: 20px;
   padding-right: 10px;
+  text-align: left;
 }
 
 .name {
@@ -34,26 +39,25 @@
   font-weight: 500;
   font-size: 18px;
 }
-
+.totalTextTitle {
+  margin-right: 10px;
+}
 .wrapper {
-  width: 90%;
-  max-height: 500px;
+  width: 70%;
+  max-height: 300px;
   background-color: rgb(255, 255, 255);
-  padding: 50px;
-  padding-top: 10px;
+  padding: 10px;
+  top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: rgb(0, 0, 0);
-  border: #000000 solid;
-}
-
-.totalTextTitle {
-  margin-right: 10px;
+  border: #000000f5 solid;
+  border-radius: 10px;
 }
 
 .button {
-  padding: 10px 5px;
+  padding: 15px 10px;
   cursor: pointer;
   margin-top: 10px;
   border: none;
@@ -61,6 +65,7 @@
   font-weight: bold;
   color: white;
   border-radius: 10px;
+  align-items: center;
 }
 
 .button:hover {
@@ -121,15 +126,15 @@
 }
 
 .cancel {
-  border: none;
-  background-color: rgb(147, 5, 5);
-  color: white;
-  padding: 8px 12px;
-  font-weight: 500;
-  font-size: 13px;
-  border-radius: 10px;
+  padding: 15px 10px;
   cursor: pointer;
-  margin: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: rgb(181, 8, 8);
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  align-items: center;
 }
 .cancel:hover {
   background-color: rgb(85, 3, 3);

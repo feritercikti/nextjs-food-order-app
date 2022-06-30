@@ -1,7 +1,9 @@
 .container {
-  padding: 50px;
+  padding: 30px;
   display: flex;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  height: 500px;
 }
 
 .left {
@@ -12,6 +14,10 @@
   width: 100%;
   text-align: left;
   margin-bottom: 50px;
+}
+
+.row {
+  margin-left: 30px;
 }
 
 .row:last-child {
@@ -59,13 +65,14 @@
 .wrapper {
   width: 90%;
   max-height: 300px;
-  background-color: #333;
-  padding: 50px;
+  background-color: white;
+  padding: 40px;
   padding-top: 10px;
   display: flex;
+  border: black solid;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .totalTextTitle {
@@ -73,9 +80,9 @@
 }
 
 .button {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   height: 30px;
-  color: teal;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   margin-top: 20px;
   cursor: not-allowed;

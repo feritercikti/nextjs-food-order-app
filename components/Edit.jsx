@@ -66,7 +66,6 @@ const Edit = ({ setEdit, products }) => {
           <input
             className={styles.input}
             type='text'
-            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>

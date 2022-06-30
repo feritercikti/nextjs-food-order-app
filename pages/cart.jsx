@@ -12,8 +12,15 @@ const Cart = () => {
   const [open, setOpen] = useState(false);
 
   const cart = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const productSize = (index) => {
+    if (index === 0) return 'Small';
+    if (index === 1) return 'Medium';
+    if (index === 2) return 'Large';
+  };
 
   const createOrder = async (data) => {
     try {
@@ -35,6 +42,7 @@ const Cart = () => {
             <tr className={styles.trTitle}>
               <th>Product</th>
               <th>Name</th>
+              <th>Size</th>
               <th>Extras</th>
               <th>Price</th>
               <th>Quantity</th>
@@ -59,9 +67,14 @@ const Cart = () => {
                   <span className={styles.name}>{product.title}</span>
                 </td>
                 <td>
+                  <span className={styles.name}>
+                    {productSize(product.size)}
+                  </span>
+                </td>
+                <td>
                   <span className={styles.extras}>
                     {product.extras.map((extra) => (
-                      <span key={extra._id}>{extra.text}, </span>
+                      <span key={extra._id}>{`${extra.text} `} </span>
                     ))}
                   </span>
                 </td>
@@ -73,16 +86,8 @@ const Cart = () => {
                 </td>
                 <td>
                   <span className={styles.total}>
-                    ${product.price * product.quantity}
+                    ${product.quantity * product.price}
                   </span>
-                </td>
-                <td>
-                  <button
-                    className={styles.cancel}
-                    onClick={() => handleCancel(product._id)}
-                  >
-                    Cancel
-                  </button>
                 </td>
               </tr>
             ))}
@@ -91,19 +96,15 @@ const Cart = () => {
       </div>
       <div className={styles.right}>
         <div className={styles.wrapper}>
-          <h2 className={styles.title}>Cart Total</h2>
+          <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b>${cart.total}
+            <b className={styles.totalTextTitle}>Total:</b>$ {cart.total}
           </div>
-          <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Discount:</b>$00.00
-          </div>
-          <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b>${cart.total}
-          </div>
-
           <button className={styles.button} onClick={() => setOpen(true)}>
             CHECKOUT NOW!
+          </button>
+          <button className={styles.cancel} onClick={() => dispatch(reset())}>
+            CANCEL
           </button>
         </div>
       </div>
@@ -112,6 +113,7 @@ const Cart = () => {
           total={cart.total}
           createOrder={createOrder}
           setOpen={setOpen}
+          productSize={productSize}
         />
       )}
     </div>

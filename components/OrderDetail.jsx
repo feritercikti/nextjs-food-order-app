@@ -3,12 +3,13 @@ import styles from '../styles/OrderDetail.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const OrderDetail = ({ total, createOrder, setOpen }) => {
+const OrderDetail = ({ total, createOrder, setOpen, productSize }) => {
   const [customer, setCustomer] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
 
   const cart = useSelector((state) => state.cart);
+  const products = useSelector((state) => state.cart.products);
 
   const handleClick = () => {
     createOrder({
@@ -16,6 +17,7 @@ const OrderDetail = ({ total, createOrder, setOpen }) => {
       address,
       phone,
       total,
+      products,
       method: 0,
     });
   };
@@ -23,9 +25,7 @@ const OrderDetail = ({ total, createOrder, setOpen }) => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>
-          You will pay ${cart.total} after delivery
-        </h1>
+        <h1 className={styles.title}>You will pay ${total} after delivery</h1>
         <div className={styles.item}>
           <label className={styles.label}>Name Surname</label>
           <input
@@ -59,7 +59,9 @@ const OrderDetail = ({ total, createOrder, setOpen }) => {
 
           {cart.products.map((product) => (
             <div key={product._id}>
-              <span className={styles.name}>{product.title} </span>
+              <span className={styles.name}>
+                {`${product.title} - ${productSize(product.size)}`}{' '}
+              </span>
             </div>
           ))}
         </div>
@@ -69,7 +71,7 @@ const OrderDetail = ({ total, createOrder, setOpen }) => {
             <div key={product._id}>
               <span className={styles.extras}>
                 {product.extras.map((extra) => (
-                  <span key={extra._id}>{extra.text} </span>
+                  <span key={extra._id}>{`${extra.text} `} </span>
                 ))}
               </span>
             </div>

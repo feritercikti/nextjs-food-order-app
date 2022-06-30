@@ -11,6 +11,13 @@ const Order = ({ order }) => {
     if (index - status === 1) return styles.inProgress;
     if (index - status > 1) return styles.notdone;
   };
+
+  const productSize = (size) => {
+    if (size === 0) return 'Small';
+    if (size === 1) return 'Medium';
+    if (size === 2) return 'Large';
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -19,15 +26,37 @@ const Order = ({ order }) => {
             <tbody>
               <tr className={styles.trTitle}>
                 <th>Order ID</th>
+                <th>Product</th>
+                <th>Size</th>
+                <th>Extras</th>
                 <th>Customer</th>
                 <th>Address</th>
                 <th>Total</th>
+                <th>Payment Status</th>
               </tr>
             </tbody>
             <tbody>
               <tr className={styles.tr}>
                 <td>
                   <span className={styles.id}>{order._id}</span>
+                </td>
+                <td>
+                  <span className={styles.id}>
+                    {order.products.map((product) => product.title)}
+                  </span>
+                </td>
+                <td>
+                  <span className={styles.id}>
+                    {order.products.map((product) => productSize(product.size))}
+                  </span>
+                </td>
+
+                <td>
+                  <span className={styles.id}>
+                    {order.products.map((product) =>
+                      product.extras.map((extra) => extra.text)
+                    )}
+                  </span>
                 </td>
                 <td>
                   <span className={styles.name}>{order.customer}</span>
@@ -38,13 +67,16 @@ const Order = ({ order }) => {
                 <td>
                   <span className={styles.total}>${order.total}</span>
                 </td>
+                <td>
+                  <span className={styles.total}>Not Paid</span>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.row}>
           <div className={statusClass(0)}>
-            <Image src='/img/paid.png' width={30} height={30} alt='' />
+            <Image src='/img/paid.png' width={50} height={50} alt='' />
             <span>Payment</span>
             <div className={styles.checkedIcon}>
               <Image
@@ -57,7 +89,7 @@ const Order = ({ order }) => {
             </div>
           </div>
           <div className={statusClass(1)}>
-            <Image src='/img/bake.png' width={30} height={30} alt='' />
+            <Image src='/img/bake.png' width={50} height={50} alt='' />
             <span>Preparing</span>
             <div className={styles.checkedIcon}>
               <Image
@@ -70,7 +102,7 @@ const Order = ({ order }) => {
             </div>
           </div>
           <div className={statusClass(2)}>
-            <Image src='/img/bike.png' width={30} height={30} alt='' />
+            <Image src='/img/bike.png' width={50} height={50} alt='' />
             <span>On the Way</span>
             <div className={styles.checkedIcon}>
               <Image
@@ -83,7 +115,7 @@ const Order = ({ order }) => {
             </div>
           </div>
           <div className={statusClass(3)}>
-            <Image src='/img/delivered.png' width={30} height={30} alt='' />
+            <Image src='/img/delivered.png' width={50} height={50} alt='' />
             <span>Delivered</span>
             <div className={styles.checkedIcon}>
               <Image
@@ -95,23 +127,6 @@ const Order = ({ order }) => {
               />
             </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.wrapper}>
-          <h2 className={styles.title}>Cart Total</h2>
-          <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b>${order.total}
-          </div>
-          <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Discount:</b>$00.00
-          </div>
-          <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b>${order.total}
-          </div>
-          <button disabled className={styles.button}>
-            Not Paid
-          </button>
         </div>
       </div>
     </div>

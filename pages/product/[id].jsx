@@ -35,7 +35,7 @@ const Product = ({ pizza }) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...pizza, extras, price, quantity }));
+    dispatch(addProduct({ ...pizza, size, extras, price, quantity }));
   };
 
   return (
