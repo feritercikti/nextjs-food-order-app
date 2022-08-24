@@ -1,9 +1,8 @@
 import styles from '../styles/Featured.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const Featured = () => {
-  const [index, setIndex] = useState(0);
+  /*   const [index, setIndex] = useState(0);
   const images = [
     '/img/featured.png',
     '/img/featured2.png',
@@ -17,12 +16,11 @@ const Featured = () => {
     if (direction === 'r') {
       setIndex(index !== 2 ? index + 1 : 0);
     }
-  };
+  }; */
 
   return (
     <div className={styles.container}>
       <Image
-        width={500}
         src='/img/pizzaloogo.png'
         alt=''
         layout='fill'

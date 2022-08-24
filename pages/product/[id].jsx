@@ -83,6 +83,7 @@ const Product = ({ pizza }) => {
           <input
             onChange={(e) => setQuantity(e.target.value)}
             type='number'
+            min='1'
             defaultValue={1}
             className={styles.quantity}
           />

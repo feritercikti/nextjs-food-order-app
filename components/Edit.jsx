@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import styles from '../styles/Edit.module.css';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
-const Edit = ({ setEdit, products }) => {
+const Edit = ({ setEdit, pizzaList, product }) => {
   const [file, setFile] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
   const [prices, setPrices] = useState([]);
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState(null);
@@ -43,7 +42,7 @@ const Edit = ({ setEdit, products }) => {
         img: url,
       };
 
-      await axios.post('http://localhost:3000/api/products', newProduct);
+      await axios.put('http://localhost:3000/api/products', newProduct);
       setClose(true);
     } catch (error) {
       console.log(error);
@@ -59,13 +58,18 @@ const Edit = ({ setEdit, products }) => {
         <h1>Edit Pizza</h1>
         <div className={styles.item}>
           <label className={styles.label}> Choose an image</label>
-          <input type='file' onChange={(e) => setFile(e.target.files[0])} />
+          <input
+            type='file'
+            value={product.img}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
         </div>
         <div className={styles.item}>
           <label className={styles.label}> Title</label>
           <input
             className={styles.input}
             type='text'
+            value={product.title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -74,6 +78,7 @@ const Edit = ({ setEdit, products }) => {
           <textarea
             rows={4}
             type='text'
+            value={product.desc}
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
@@ -84,18 +89,21 @@ const Edit = ({ setEdit, products }) => {
               className={`${styles.input} ${styles.inputSm}`}
               type='number'
               placeholder='Small'
+              value={product.prices[0]}
               onChange={(e) => changePrice(e, 0)}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type='number'
               placeholder='Medium'
+              value={product.prices[1]}
               onChange={(e) => changePrice(e, 1)}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type='number'
               placeholder='Large'
+              value={product.prices[2]}
               onChange={(e) => changePrice(e, 2)}
             />
           </div>
@@ -108,6 +116,7 @@ const Edit = ({ setEdit, products }) => {
               type='text'
               placeholder='Item'
               name='text'
+              value={product.extraOptions.map((extra) => extra.text)}
               onChange={handleExtraInput}
             />
             <input
@@ -115,6 +124,7 @@ const Edit = ({ setEdit, products }) => {
               type='number'
               placeholder='Price'
               name='price'
+              value={product.extraOptions.map((extra) => extra.price)}
               onChange={handleExtraInput}
             />
             <button className={styles.extraButton} onClick={handleExtra}>

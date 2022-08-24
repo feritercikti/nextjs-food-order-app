@@ -10,8 +10,8 @@
   background-color: rgba(252, 252, 252, 0.781);
   -webkit-box-shadow: 1px 3px 24px 5px rgba(132, 133, 128, 0.31);
   box-shadow: 1px 3px 24px 5px rgba(96, 98, 88, 0.31);
-
   margin-left: 50px;
+  margin-bottom: 50px;
 }
 
 .title {

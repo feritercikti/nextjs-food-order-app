@@ -1,9 +1,9 @@
 .container {
-  height: 500px;
+  height: 600px;
   background-color: #990a0a;
   overflow: hidden;
   position: relative;
-  padding: 5px;
+  padding: 10px;
 }
 
 @media screen and (max-width: 480px) {

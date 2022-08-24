@@ -9,6 +9,14 @@ const Index = ({ orders, products }) => {
   const [orderList, setOrderList] = useState(orders);
   const status = ['preparing', 'on the way', 'delivered'];
   const [edit, setEdit] = useState(false);
+  const [product, setProduct] = useState({
+    file: '',
+    title: '',
+    desc: '',
+    prices: [],
+    extraOptions: [],
+    extra: '',
+  });
 
   const handleDelete = async (id) => {
     try {
@@ -53,6 +61,18 @@ const Index = ({ orders, products }) => {
     if (index === 2) return 'Large';
   };
 
+  const handleUpdate = (id) => {
+    setEdit(true);
+    const selectedProduct = products.find((product) => product._id === id);
+    setProduct({
+      file: selectedProduct.img,
+      title: selectedProduct.title,
+      desc: selectedProduct.desc,
+      prices: selectedProduct.prices,
+      extraOptions: selectedProduct.extraOptions,
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -91,7 +111,7 @@ const Index = ({ orders, products }) => {
                 <td>
                   <button
                     className={styles.button}
-                    onClick={() => setEdit(true)}
+                    onClick={() => handleUpdate(product._id)}
                   >
                     Edit
                   </button>
@@ -165,7 +185,9 @@ const Index = ({ orders, products }) => {
           ))}
         </table>
       </div>
-      {edit && <Edit setEdit={setEdit} products={pizzaList} />}
+      {edit && (
+        <Edit setEdit={setEdit} pizzaList={pizzaList} product={product} />
+      )}
     </div>
   );
 };

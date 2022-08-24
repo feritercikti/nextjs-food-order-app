@@ -54,7 +54,7 @@ const Order = ({ order }) => {
                 <td>
                   <span className={styles.id}>
                     {order.products.map((product) =>
-                      product.extras.map((extra) => extra.text)
+                      product.extras.map((extra) => `${extra.text} `)
                     )}
                   </span>
                 </td>
@@ -76,8 +76,8 @@ const Order = ({ order }) => {
         </div>
         <div className={styles.row}>
           <div className={statusClass(0)}>
-            <Image src='/img/paid.png' width={50} height={50} alt='' />
-            <span>Payment</span>
+            <Image src='/img/received.jpg' width={40} height={50} alt='' />
+            <span>Order Received</span>
             <div className={styles.checkedIcon}>
               <Image
                 className={styles.checkedIcon}
