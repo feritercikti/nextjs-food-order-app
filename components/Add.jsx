@@ -31,7 +31,7 @@ const Add = ({ setClose }) => {
     data.append('upload_preset', 'uploads');
     try {
       const uploadRes = await axios.post(
-        'https://api.cloudinary.com/v1_1/dm9geca0d/image/upload',
+        'https://api.cloudinary.com/v1_1/<your_cloud_name>/image/upload',
         data
       );
       const { url } = uploadRes.data;
